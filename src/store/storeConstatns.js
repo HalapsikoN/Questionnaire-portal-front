@@ -1,0 +1,2 @@
+export const ACTION_SIGN_IN='ACTION_SIGN_IN';
+export const ACTION_ERROR='ACTION_ERROR';
