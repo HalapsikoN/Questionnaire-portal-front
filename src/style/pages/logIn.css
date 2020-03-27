@@ -1,0 +1,66 @@
+.sign-in {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-container {
+    width: 475px;
+    background-color: rgba(255, 255, 255, 100);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 2px;
+}
+
+.form-content {
+    padding: 40px 50px 20px;
+}
+
+.form-title {
+    text-align: center;
+}
+
+s1 {
+    color: black;
+    font-weight: bolder;
+}
+
+s2 {
+    color: #007bff;
+}
+
+.form-title2 {
+    text-align: center;
+    font-size: 26px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.form-input-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    height: 30px;
+}
+
+.form-btn {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.form-title3 {
+    text-align: center;
+}
+
+a {
+    font-weight: bolder;
+}

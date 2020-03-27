@@ -3,6 +3,8 @@ import {signIn} from "../../store/action";
 import {LOG_UP} from "../../constants";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import '../../style/pages/logIn.css';
+import {isLogInValid} from "../../util/validator";
 
 class LogIn extends Component {
 
@@ -10,8 +12,8 @@ class LogIn extends Component {
         super(props);
 
         this.state = {
-            email: 'a@a.a',
-            password: 'test2N'
+            email: '',
+            password: ''
         }
     };
 
@@ -29,7 +31,9 @@ class LogIn extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.signIn(this.state);
+        if (isLogInValid(this.state)) {
+            this.props.signIn(this.state);
+        }
     };
 
     render() {
@@ -37,59 +41,59 @@ class LogIn extends Component {
         const {email, password} = this.state;
 
         return (
-            <div className="form-container">
-                <div className="form-content">
+            <div className="sign-in">
+                <div className="form-container">
+                    <div className="form-content">
 
-                    <div className="form-title">
-                        LOGOTYPE
-                    </div>
-                    <div>
-                        Log in
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <input type="email"
-                                   className="form-control"
-                                   placeholder="Email"
-                                   value={email}
-                                   onChange={this.onChangeEmail}/>
-                            <input type="password"
-                                   className="form-control"
-                                   placeholder="Password"
-                                   value={password}
-                                   onChange={this.onChangePassword}/>
-                            <div className="form-row container justify-content-between">
-                                <div className="form-group form-check">
-                                    <input type="checkbox"
-                                           className="form-check-input"
-                                           id="remember"/>
-                                    <label className="form-check-label"
-                                           htmlFor="remember">Remember me</label>
-                                </div>
-                                <div>
-                                    <a href="#">Forgot your password?</a>
-                                </div>
-                            </div>
-                            <button className="btn btn-primary form-button" type="submit">LOG IN</button>
-                            <div>
-                                Don't have account? <a href={LOG_UP}>Sign Up</a>
-                            </div>
+                        <div className="form-title">
+                            <h1>
+                                <s1>LOGO</s1>
+                                <s2>TYPE</s2>
+                            </h1>
                         </div>
-                    </form>
+                        <div className="form-title2">
+                            Log In
+                        </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <input type="email"
+                                       className="form-control form-input-text"
+                                       placeholder="Email"
+                                       value={email}
+                                       onChange={this.onChangeEmail}
+                                       required
+                                />
+                                <input type="password"
+                                       className="form-control form-input-text"
+                                       placeholder="Password"
+                                       value={password}
+                                       onChange={this.onChangePassword}
+                                       required
+                                />
+                                <div className="justify-content-between form-checkbox">
+                                    <div className="form-group form-check">
+                                        <input type="checkbox"
+                                               className="form-check-input"
+                                               id="remember"/>
+                                        <label htmlFor="remember">Remember me</label>
+                                    </div>
+                                    <div>
+                                        <a href="#">Forgot your password?</a>
+                                    </div>
+                                </div>
+                                <button className="btn btn-primary btn-block form-btn" type="submit">LOG IN</button>
+                                <div className="form-title3">
+                                    Don't have account? <a href={LOG_UP}>Sign Up</a>
+                                </div>
+                            </div>
+                        </form>
 
-
+                    </div>
                 </div>
             </div>
         )
     }
 }
-
-// const mapStateToProps=(state)=>{
-//   console.log(state);
-//   return {
-//       test:1
-//   }
-// };
 
 const putActionsToProps = (dispatch) => {
     return {
