@@ -33,3 +33,4 @@ const signUpUser = data =>
 export const api = {
     signInUser, signUpUser
 };
+
