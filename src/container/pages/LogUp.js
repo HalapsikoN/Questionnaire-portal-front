@@ -12,12 +12,12 @@ class LogUp extends Component {
         super(props);
 
         this.state = {
-            email: 'a@a.a',
-            password: 'test2N',
-            confirmPassword: 'test2N',
-            firstName: 'All',
-            lastName: 'Lexx',
-            phone: '+35894',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            firstName: '',
+            lastName: '',
+            phone: '',
         }
     };
 
