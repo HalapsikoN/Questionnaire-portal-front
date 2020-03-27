@@ -2,9 +2,6 @@
   "name": "questionnaire-portal",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "12.11.1"
-  },
   "root": "build/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
