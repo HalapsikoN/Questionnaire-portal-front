@@ -14,6 +14,6 @@ export function isAuth() {
     return !!localStorage.getItem(AUTH_KEY);
 }
 
-export function withNavigation(pathname) {
-    return pathname !== LOG_IN && pathname !== LOG_UP
+export function isPathnameLogInOrLogUp(pathname) {
+    return pathname === LOG_IN || pathname === LOG_UP
 }

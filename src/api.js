@@ -17,7 +17,11 @@ const signInUser = data =>
         `${API_URL + LOG_IN}`,
         {
             method: POST,
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type':'application/json'
+            }
+            //body: data
         }
     ).then(handleResponse);
 
@@ -26,7 +30,10 @@ const signUpUser = data =>
         `${API_URL + LOG_UP}`,
         {
             method: POST,
-            body: JSON.stringify({...data, role: USER})
+            body: JSON.stringify({...data, role: USER}),
+            headers:{
+                'Content-Type':'application/json'
+            }
         }
     ).then(handleResponse);
 

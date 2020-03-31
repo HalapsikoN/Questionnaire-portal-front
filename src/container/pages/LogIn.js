@@ -3,7 +3,7 @@ import {signIn} from "../../store/action";
 import {LOG_UP} from "../../constants";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import '../../style/pages/logIn.css';
+import '../../style/pages/logInAndReigtre.css';
 import {isLogInValid} from "../../util/validator";
 
 class LogIn extends Component {
@@ -12,8 +12,8 @@ class LogIn extends Component {
         super(props);
 
         this.state = {
-            email: '',
-            password: ''
+            email: 'a@a.a',
+            password: 'test2N'
         }
     };
 

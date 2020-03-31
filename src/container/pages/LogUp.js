@@ -3,7 +3,7 @@ import {signUp} from "../../store/action";
 import {LOG_IN} from "../../constants";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import '../../style/pages/logIn.css';
+import '../../style/pages/logInAndReigtre.css';
 import {isLogUpValid} from "../../util/validator";
 
 class LogUp extends Component {

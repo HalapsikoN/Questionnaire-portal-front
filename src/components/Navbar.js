@@ -1,8 +1,9 @@
 import {connect} from "react-redux";
 import React, {Component} from "react";
-import "../style/pages/logIn.css"
-import {isAuth, withNavigation} from "../util/heleper";
+import "../style/pages/logInAndReigtre.css"
+import {isAuth, isPathnameLogInOrLogUp} from "../util/heleper";
 import {LOG_IN, USER_EMAIL} from "../constants";
+import "../style/components/navbar.css"
 
 
 class Navbar extends Component {
@@ -11,11 +12,11 @@ class Navbar extends Component {
 
         const {email} = this.props;
 
-        return withNavigation(window.location.pathname) ? (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
-                    <s1>LOGO</s1>
-                    <s2>TYPE</s2>
+        return  (
+            <nav className="navbar navbar-expand-lg navbar-light nav-gen">
+                <a className="navbar-brand" href="/">
+                    <span className="nav-text1">LOGO</span>
+                    <span className="nav-text2">TYPE</span>
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent"
@@ -40,12 +41,12 @@ class Navbar extends Component {
                                 <a className="dropdown-item" href="#">Something else here</a>
                             </div>
                         </div>) : (
-                        <a href={LOG_IN}>Log in</a>
+                        <a className="nav-a1" href={LOG_IN}>Log in</a>
                     )
                     }
                 </div>
             </nav>
-        ) : null;
+        )
     }
 
 }
