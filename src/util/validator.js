@@ -52,3 +52,51 @@ export const isLogUpValid = (data) => {
         return true;
     }
 };
+
+export const isUpdateValid = (data) => {
+    let message = "Invalid input:\n";
+    let noError = true;
+
+    if (!emailRegex.test(data.email)) {
+        message += " *  Enter the correct email (Example: example@simple.com).\n";
+        noError = false;
+    }
+    if (!phoneRegex.test(data.phone)) {
+        message += " *  Enter the correct phone number (Minimum length of phone is 3 symbols. It may contain (+) symbol and must have only numerals).\n";
+        noError = false;
+    }
+
+
+    if (!noError) {
+        alert(message);
+        return false;
+    } else {
+        return true;
+    }
+};
+
+export const isValidPasswords = (data) => {
+    let message = "Invalid input:\n";
+    let noError = true;
+
+    if (!passwordRegex.test(data.currentPassword)) {
+        message += " *  Enter the correct current password (Minimum length of password is 6 symbols. It must contain of latin letters, have capital letter and numeral).\n";
+        noError = false;
+    }
+    if (!passwordRegex.test(data.password)) {
+        message += " *  Enter the correct password (Minimum length of password is 6 symbols. It must contain of latin letters, have capital letter and numeral).\n";
+        noError = false;
+    }
+    if (data.password !== data.confirmPassword) {
+        message += " *  The confirm password is not the same.\n";
+        noError = false;
+    }
+
+
+    if (!noError) {
+        alert(message);
+        return false;
+    } else {
+        return true;
+    }
+};

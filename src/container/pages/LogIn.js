@@ -12,8 +12,8 @@ class LogIn extends Component {
         super(props);
 
         this.state = {
-            email: 'a@a.a',
-            password: 'test2N'
+            email: '',
+            password: ''
         }
     };
 
@@ -47,8 +47,8 @@ class LogIn extends Component {
 
                         <div className="form-title">
                             <h1>
-                                <s1>LOGO</s1>
-                                <s2>TYPE</s2>
+                                <span className="s1">LOGO</span>
+                                <span className="s2">TYPE</span>
                             </h1>
                         </div>
                         <div className="form-title2">

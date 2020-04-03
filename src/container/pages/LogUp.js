@@ -75,8 +75,8 @@ class LogUp extends Component {
 
                         <div className="form-title">
                             <h1>
-                                <s1>LOGO</s1>
-                                <s2>TYPE</s2>
+                                <span className="s1">LOGO</span>
+                                <span className="s2">TYPE</span>
                             </h1>
                         </div>
                         <div className="form-title2">

@@ -1,36 +1,29 @@
 import React from 'react';
 import LogIn from "../container/pages/LogIn";
 import 'bootstrap/dist/css/bootstrap.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {Provider} from "react-redux";
 import {store} from "../configureStore";
-import {BrowserRouter as Router, Route, Switch, BrowserRouter} from "react-router-dom"
+import {BrowserRouter as Router} from "react-router-dom"
 import Navbar from "./Navbar";
 import HomePage from "../container/pages/HomePage";
 import LogUp from "../container/pages/LogUp";
 import {PrivateRoute} from "./PrivateRoute";
 import {PublicRoute} from "./PublicRoute";
+import {EDIT_USER_INFO, EDIT_USER_PASSWORD, HOME_PAGE, LOG_IN, LOG_UP} from "../constants";
+import EditUserPage from "../container/pages/EditUserPage";
+import EditPasswordPage from "../container/pages/EditPasswordPage";
 
 
 export default () => (
     <Provider store={store}>
         <Router>
-            {/*<Navbar/>*/}
-            {/*<Route path="/">*/}
-            {/*    <HomePage/>*/}
-            {/*</Route>*/}
-            {/*<Route path="/logIn">*/}
-            {/*    <LogIn/>*/}
-            {/*</Route>*/}
-            {/*<Route path="/logUp">*/}
-            {/*    <LogUp/>*/}
-            {/*</Route>*/}
-            <PublicRoute restricted={true} exact path="/logIn" component={LogIn}/>
-            <PublicRoute restricted={true} exact path="/logUp" component={LogUp}/>
+            <PublicRoute restricted={true} exact path={LOG_IN} component={LogIn}/>
+            <PublicRoute restricted={true} exact path={LOG_UP} component={LogUp}/>
             <PrivateRoute component={Navbar}/>
-            <PrivateRoute path="/" component={HomePage}/>
+            <PrivateRoute path={HOME_PAGE} component={HomePage}/>
+            <PrivateRoute path={EDIT_USER_INFO} component={EditUserPage}/>
+            <PrivateRoute path={EDIT_USER_PASSWORD} component={EditPasswordPage}/>
         </Router>
     </Provider>
 )

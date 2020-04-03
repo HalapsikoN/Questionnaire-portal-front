@@ -1,4 +1,4 @@
-.nav-gen{
+.nav-gen {
     background-color: rgba(255, 255, 255, 100);
     display: flex;
     margin-left: 12%;
@@ -6,19 +6,45 @@
     height: 60px;
 }
 
-.nav-text1{
+.nav-text1 {
     color: black;
     font-weight: 700;
     font-size: 30px;
 }
 
-.nav-text2{
+.nav-text2 {
     color: #007bff;
     font-weight: 500;
     font-size: 30px;
 }
 
-.nav-a1{
+.nav-a1 {
     font-weight: 600;
     font-size: 25px;
+}
+
+.nav-links {
+    justify-content: flex-end;
+}
+
+li {
+    margin-left: 120px;
+    font-size: 20px;
+}
+
+.a1 {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.chosen {
+    color: #007bff;
+}
+
+.nav-drop {
+    margin-left: -70%;
+}
+
+.spin {
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 8px;
 }

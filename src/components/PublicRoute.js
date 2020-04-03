@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {isAuth} from "../util/heleper";
 
 export const PublicRoute = ({component: Component, restricted, ...rest}) => {
@@ -9,8 +9,8 @@ export const PublicRoute = ({component: Component, restricted, ...rest}) => {
         // restricted = true meaning restricted route
         <Route {...rest} render={props => (
             isAuth() && restricted ?
-                <Redirect to="/" />
+                <Redirect to="/"/>
                 : <Component {...props} />
-        )} />
+        )}/>
     );
 };
