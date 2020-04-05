@@ -1,7 +1,7 @@
 import {
     API_URL,
     GET,
-    GET_CURRENT_USER_INFO,
+    GET_CURRENT_USER_INFO, GET_USER_FIELDS,
     LOG_IN,
     LOG_OUT,
     LOG_UP,
@@ -108,6 +108,18 @@ const updateCurrentUserPassword = (data) =>
         }
     ).then(handleEmptyResponse);
 
+const loadUserFields= () => {
+    return fetch(
+        `${API_URL + GET_USER_FIELDS}`,
+        {
+            method: GET,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`
+            }
+        }
+    ).then(handleResponse);
+};
+
 export const api = {
     signInUser,
     signUpUser,
@@ -115,5 +127,6 @@ export const api = {
     loadCurrentUserInfo,
     updateCurrentUserInfo,
     updateCurrentUserPassword,
+    loadUserFields
 };
 

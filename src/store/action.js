@@ -6,7 +6,7 @@ const errorFunction = (errorMessage) => {
     if (errorMessage.error === FORBIDDEN_ERROR) {
         logOut();
     }
-}
+};
 
 export const signIn = (data) => {
 

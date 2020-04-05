@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import React, {Component} from "react";
 import "../style/pages/logInAndReigtre.css"
-import {isAuth, isEditPage, isHomePage, isResponsePage} from "../util/heleper";
-import {EDIT_USER_INFO, EDIT_USER_PASSWORD, HOME_PAGE, LOG_IN} from "../constants";
+import {isAuth, isEditPage, isFieldPage, isResponsePage} from "../util/heleper";
+import {EDIT_USER_INFO, EDIT_USER_PASSWORD, FIELD_PAGE, HOME_PAGE, LOG_IN} from "../constants";
 import "../style/components/navbar.css"
 import {loadCurrentUserInfo, logOut} from "../store/action";
 import {bindActionCreators} from "redux";
@@ -46,8 +46,8 @@ class Navbar extends Component {
                         <ul className="navbar-nav">
 
                             <li className="nav-item">
-                                <a className={isHomePage(window.location.pathname) ? ("nav-link chosen") : ("nav-link a1")}
-                                   href={HOME_PAGE}>Fields</a>
+                                <a className={isFieldPage(window.location.pathname) ? ("nav-link chosen") : ("nav-link a1")}
+                                   href={FIELD_PAGE}>Fields</a>
                             </li>
 
                             <li className="nav-item">
