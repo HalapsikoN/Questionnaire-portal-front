@@ -28,7 +28,12 @@ export const ADMIN = 'ADMIN';
 export const GET_CURRENT_USER_INFO = '/users/currentUser';
 export const UPDATE_USER_INFO = '/users/info/';
 export const UPDATE_USER_PASSWORD = '/users/passwordChange/';
+
 export const GET_USER_FIELDS = '/users/fields';
+export const ADD_USER_FIELD = '/fields';
+export const UPDATE_USER_FIELD = '/fields/';
+export const DELETE_USER_FIELD = '/fields/';
+
 export const LOG_OUT = '/logOut';
 
 //const string

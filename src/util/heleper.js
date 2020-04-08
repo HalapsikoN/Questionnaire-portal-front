@@ -8,6 +8,7 @@ import {
     LOG_UP,
     RESPONSE_PAGE
 } from "../constants";
+import {CHECKBOX, COMBOBOX, RADIO_BUTTON} from "./heleperConstants";
 
 export function authHeader() {
     let authKey = JSON.parse(localStorage.getItem(AUTH_KEY));
@@ -43,3 +44,6 @@ export function isEditPage(pathname) {
     return pathname === EDIT_USER_INFO || pathname === EDIT_USER_PASSWORD;
 }
 
+export function isNeedOptions(select) {
+    return  select === COMBOBOX || select === RADIO_BUTTON || select===CHECKBOX;
+}

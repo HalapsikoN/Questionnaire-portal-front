@@ -1,6 +1,8 @@
 import {ACTION_ERROR, ACTION_LOAD_CURRENT_USER, ACTION_LOG_IN, ACTION_UPDATE_CURRENT_USER} from "./storeConstatns";
 import {api} from "../api"
 import {AUTH_KEY, FORBIDDEN_ERROR, HOME_PAGE, LOG_IN, USER_EMAIL} from "../constants";
+import {Redirect} from "react-router-dom";
+import React from "react";
 
 const errorFunction = (errorMessage) => {
     if (errorMessage.error === FORBIDDEN_ERROR) {
@@ -62,6 +64,7 @@ export const logOut = () => {
         },
         errorMessage => {
             console.log('logOut2: ', errorMessage.error);
+            window.location.replace(LOG_IN);
         }
     );
 

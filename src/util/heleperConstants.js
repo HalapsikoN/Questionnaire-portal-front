@@ -1,9 +1,9 @@
-export const SINGLE_LINE_TEXT = 'Single line text';
-export const MULTILINE_TEXT = 'Multiline text';
-export const RADIO_BUTTON = 'Radio button';
-export const CHECKBOX = 'Checkbox';
-export const COMBOBOX = 'Combobox';
-export const DATE = 'Date';
+export const SINGLE_LINE_TEXT = 'SINGLE_LINE_TEXT';
+export const MULTILINE_TEXT = 'MULTILINE_TEXT';
+export const RADIO_BUTTON = 'RADIO_BUTTON';
+export const CHECKBOX = 'CHECKBOX';
+export const COMBOBOX = 'COMBOBOX';
+export const DATE = 'DATE';
 
 
 export function convertFieldTypeToStringText(string) {
