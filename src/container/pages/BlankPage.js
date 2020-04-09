@@ -117,7 +117,7 @@ class BlankPage extends React.Component {
                 <div className="form-container">
                     <div className="form-content">
 
-                        {fieldList ? (
+                        {fieldList && fieldList.length ? (
                             <form onSubmit={this.handleSubmit}>
                                 {fieldList}
                                 <button type="submit" className="btn btn-primary btn-blank">SUBMIT</button>
