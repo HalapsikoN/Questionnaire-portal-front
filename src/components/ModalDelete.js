@@ -1,16 +1,7 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
-import {
-    CHECKBOX, COMBOBOX,
-    convertFieldTypeToStringText, DATE,
-    MULTILINE_TEXT,
-    RADIO_BUTTON,
-    SINGLE_LINE_TEXT
-} from "../util/heleperConstants";
-import {isNeedOptions} from "../util/heleper";
 import {api} from "../api";
-import {FIELD_PAGE} from "../constants";
-import {Redirect} from "react-router-dom";
+import {history} from "./App";
 
 class ModalDelete extends React.Component {
 
@@ -18,23 +9,29 @@ class ModalDelete extends React.Component {
         super(props);
 
         this.state = {
-            id:this.props.field.id,
-            label: this.props.field.label,
+            id: '',
+            label: '',
 
-            error:null
+            error: null
         }
-
     }
 
-    handleSubmit=e=>{
-        e.preventDefault();
-        console.log(this.state);
-        api.deleteUserField(this.state).then(
-            () => {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.field !== this.props.field) {
+            this.setState({
+                id: this.props.field.id,
+                label: this.props.field.label
+            });
+        }
+    }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        api.deleteUserField(this.props.field.id).then(
+            () => {
+                history.go(0);
             },
             errorMessage => {
-                console.log('deleteModal2:', errorMessage.error);
                 this.setState({
                     error: errorMessage.error
                 });
@@ -45,10 +42,10 @@ class ModalDelete extends React.Component {
     render() {
 
         const {show, onHide} = this.props;
-        const {id, label} = this.state;
+        const {label} = this.state;
 
         return (
-            <Modal show={show===id} onHide={onHide} centered>
+            <Modal show={show} onHide={onHide} centered>
 
                 <Modal.Header closeButton>
                     <Modal.Title>Delete (<strong>{label}</strong>) field?</Modal.Title>

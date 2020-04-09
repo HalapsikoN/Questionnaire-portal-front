@@ -1,14 +1,17 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
 import {
-    CHECKBOX, COMBOBOX,
-    convertFieldTypeToStringText, DATE,
+    CHECKBOX,
+    COMBOBOX,
+    convertFieldTypeToStringText,
+    DATE,
     MULTILINE_TEXT,
     RADIO_BUTTON,
     SINGLE_LINE_TEXT
 } from "../util/heleperConstants";
 import {isNeedOptions} from "../util/heleper";
 import {api} from "../api";
+import {history} from "./App";
 
 class ModalUpdate extends React.Component {
 
@@ -16,16 +19,29 @@ class ModalUpdate extends React.Component {
         super(props);
 
         this.state = {
-            id: this.props.field.id,
-            label: this.props.field.label,
-            type: this.props.field.type,
-            options: (this.props.field.options).join("\n"),
-            required: this.props.field.required,
-            active: this.props.field.active,
+            id: '',
+            label: '',
+            type: SINGLE_LINE_TEXT,
+            options: '',
+            required: false,
+            active: false,
 
-            error:null
+            error: null
         }
 
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.field !== this.props.field) {
+            this.setState({
+                id: this.props.field.id,
+                label: this.props.field.label,
+                type: this.props.field.type,
+                options: (this.props.field.options).join("\n"),
+                required: this.props.field.required,
+                active: this.props.field.active,
+            })
+        }
     }
 
     onChangeLabel = e => {
@@ -58,15 +74,13 @@ class ModalUpdate extends React.Component {
         })
     };
 
-    handleSubmit=e=>{
+    handleSubmit = e => {
         e.preventDefault();
-        console.log({...this.state, options:this.state.options.split("\n")});
-        api.updateUserField({...this.state, options:this.state.options.split("\n")}).then(
+        api.updateUserField({...this.state, options: this.state.options.split("\n")}).then(
             () => {
-
+                history.go(0);
             },
             errorMessage => {
-                console.log('updateModal:', errorMessage.error);
                 this.setState({
                     error: errorMessage.error
                 });
@@ -77,10 +91,11 @@ class ModalUpdate extends React.Component {
     render() {
 
         const {show, onHide} = this.props;
-        const {id, label, type, options, required, active} = this.state;
+
+        const {label, type, options, required, active} = this.state;
 
         return (
-            <Modal show={show===id} onHide={onHide} centered>
+            <Modal show={show} onHide={onHide} centered>
 
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Field</Modal.Title>

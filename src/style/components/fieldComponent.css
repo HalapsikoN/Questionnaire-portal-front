@@ -1,0 +1,44 @@
+label {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
+.field-element {
+    margin-top: 10px;
+}
+
+.field-element input {
+    margin-left: 4px;
+}
+
+.field-element select {
+    margin-left: 4px;
+}
+
+.field-element textarea {
+    margin-left: 4px;
+}
+
+.field-single-line-text input {
+    margin-top: 10px;
+}
+
+.field-multiline-text textarea {
+    margin-top: 10px;
+}
+
+.field-combobox select {
+    margin-top: 10px;
+}
+
+.field-data input {
+    margin-top: 10px;
+}
+
+.field-checkbox div > label {
+    padding-left: 10px;
+}
+
+.field-radio div > label {
+    padding-left: 10px;
+}

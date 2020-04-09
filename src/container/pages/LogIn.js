@@ -12,8 +12,8 @@ class LogIn extends Component {
         super(props);
 
         this.state = {
-            email: 'a@a.a',
-            password: 'test2N'
+            email: '',
+            password: ''
         }
     };
 
@@ -32,7 +32,7 @@ class LogIn extends Component {
     handleSubmit = e => {
         e.preventDefault();
         if (isLogInValid(this.state)) {
-            this.props.signIn(this.state);
+            console.log(this.props.signIn(this.state));
         }
     };
 

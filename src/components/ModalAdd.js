@@ -1,14 +1,17 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
 import {
-    CHECKBOX, COMBOBOX,
-    convertFieldTypeToStringText, DATE,
+    CHECKBOX,
+    COMBOBOX,
+    convertFieldTypeToStringText,
+    DATE,
     MULTILINE_TEXT,
     RADIO_BUTTON,
     SINGLE_LINE_TEXT
 } from "../util/heleperConstants";
 import {isNeedOptions} from "../util/heleper";
 import {api} from "../api";
+import {history} from "./App";
 
 class ModalAdd extends React.Component {
 
@@ -22,7 +25,7 @@ class ModalAdd extends React.Component {
             required: false,
             active: false,
 
-            error:null
+            error: null
         }
 
     }
@@ -57,14 +60,13 @@ class ModalAdd extends React.Component {
         })
     };
 
-    handleSubmit=e=>{
+    handleSubmit = e => {
         e.preventDefault();
-        console.log({...this.state, options:this.state.options.split("\n")});
-        api.addUserField({...this.state, options:this.state.options.split("\n")}).then(
+        api.addUserField({...this.state, options: this.state.options.split("\n")}).then(
             () => {
+                history.go(0);
             },
             errorMessage => {
-                console.log('addModal:', errorMessage.error);
                 this.setState({
                     error: errorMessage.error
                 });

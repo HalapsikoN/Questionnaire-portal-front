@@ -84,7 +84,7 @@ img {
     width: 100%;
 }
 
-.field-table-form-group .row{
+.field-table-form-group .row {
     margin-top: 10px;
 }
 
@@ -111,11 +111,15 @@ img {
     margin-right: auto;
 }
 
-.field-table-form-group .input-check{
+.field-table-form-group .input-check {
     margin-top: 15px;
     width: auto;
 }
 
-.field-table-form-group .label-check{
+.field-table-form-group .label-check {
     width: auto;
+}
+
+.h4 {
+    text-align: center;
 }

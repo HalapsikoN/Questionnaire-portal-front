@@ -1,22 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {loadUserFields} from "../fieldAction";
-import {
-    CHECKBOX, COMBOBOX,
-    convertFieldTypeToStringText, DATE,
-    MULTILINE_TEXT,
-    RADIO_BUTTON,
-    SINGLE_LINE_TEXT
-} from "../../util/heleperConstants";
+import {convertFieldTypeToStringText} from "../../util/heleperConstants";
 import "../../style/pages/fieldPage.css"
 import {api} from "../../api";
 import bin from '../../img/bin.png';
 import edit from '../../img/edit.png';
 import plus from '../../img/plus-512.png';
-import {Modal} from 'react-bootstrap';
 import ModalAdd from "../../components/ModalAdd";
 import ModalUpdate from "../../components/ModalUpdate";
 import ModalDelete from "../../components/ModalDelete";
+import {USER_ID} from "../../constants";
 
 class FieldPage extends React.Component {
 
@@ -29,8 +22,10 @@ class FieldPage extends React.Component {
             error: null,
 
             showAddModal: false,
-            showUpdateModal: null,
-            showDeleteModal: null,
+            showUpdateModal: false,
+            showDeleteModal: false,
+
+            updateField: ''
 
         }
     }
@@ -54,29 +49,43 @@ class FieldPage extends React.Component {
         )
     };
 
-    handleCloseAddModal = () => this.setState({showAddModal: false});
+    handleCloseAddModal = () => {
+        this.setState({showAddModal: false});
+    };
 
-    handleShowAddModal = () => this.setState({showAddModal: true});
+    handleShowAddModal = () => {
+        this.setState({showAddModal: true});
+    };
 
     handleCloseUpdateModal = () => {
-        this.setState({showUpdateModal: null});
+        this.setState({
+            showUpdateModal: false,
+            field: null
+        });
     };
 
-    handleShowUpdateModal = (id) => {
-        this.setState({showUpdateModal: id});
+    handleShowUpdateModal = (field) => {
+        this.setState({
+            ...this.state,
+            showUpdateModal: true,
+            updateField: field
+        });
     };
 
-    handleCloseDeleteModal = () => this.setState({showDeleteModal: null});
+    handleCloseDeleteModal = () => this.setState({
+        showDeleteModal: false,
+        field: null
+    });
 
-    handleShowDeleteModal = (id) => this.setState({showDeleteModal: id});
+    handleShowDeleteModal = (field) => this.setState({
+        showDeleteModal: true,
+        updateField: field
+    });
 
 
     render() {
 
-        console.log('DATA:', this.state);
-
         const {fields, isFetching, error, showAddModal, showUpdateModal, showDeleteModal} = this.state;
-
 
         const fieldList = (!isFetching ? (fields.map((field) =>
             <tr key={field.id}>
@@ -85,16 +94,13 @@ class FieldPage extends React.Component {
                 <td>{field.required ? "True" : "False"}</td>
                 <td>{field.active ? "True" : "False"}</td>
                 <td className="field-table-href-icon">
-                    <a href="#" onClick={()=>this.handleShowUpdateModal(field.id)}>
+                    <a href="#" onClick={() => this.handleShowUpdateModal(field)}>
                         <img src={edit} alt="edit"/>
                     </a>
-                    <a href="#" onClick={()=>this.handleShowDeleteModal(field.id)}>
+                    <a href="#" onClick={() => this.handleShowDeleteModal(field)}>
                         <img src={bin} alt="bin"/>
                     </a>
                 </td>
-
-                <ModalUpdate show={showUpdateModal} onHide={this.handleCloseUpdateModal} field={field}/>
-                <ModalDelete show={showDeleteModal} onHide={this.handleCloseDeleteModal} field={field}/>
             </tr>
         )) : null);
 
@@ -128,10 +134,17 @@ class FieldPage extends React.Component {
                             {fieldList}
                             </tbody>
                         </table>
+
+                        <br/>
+                        <h4 className="h4">Your questionnaire will be available by the link: "
+                            https://questionnaireq.herokuapp.com/blank/{localStorage.getItem(USER_ID)} "</h4>
                     </div>
 
                     <ModalAdd show={showAddModal} onHide={this.handleCloseAddModal}/>
-
+                    <ModalUpdate show={showUpdateModal} onHide={this.handleCloseUpdateModal}
+                                 field={this.state.updateField}/>
+                    <ModalDelete show={showDeleteModal} onHide={this.handleCloseDeleteModal}
+                                 field={this.state.updateField}/>
 
                 </div>
             </div>

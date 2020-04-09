@@ -3,6 +3,7 @@ import {api} from "../api"
 import {AUTH_KEY, FORBIDDEN_ERROR, HOME_PAGE, LOG_IN, USER_EMAIL} from "../constants";
 import {Redirect} from "react-router-dom";
 import React from "react";
+import {history} from "../components/App";
 
 const errorFunction = (errorMessage) => {
     if (errorMessage.error === FORBIDDEN_ERROR) {
@@ -10,16 +11,21 @@ const errorFunction = (errorMessage) => {
     }
 };
 
+export const renderRedirect = (target) => {
+    return <Redirect to={target}/>
+};
+
 export const signIn = (data) => {
 
     return dispatch => {
         api.signInUser(data).then(
             userData => {
-                console.log('signUp: ', userData);
+                console.log('signIp: ', userData);
                 dispatch({
                     type: ACTION_LOG_IN,
                     payload: userData
                 });
+
                 window.location.replace(HOME_PAGE);
             },
             errorMessage => {
@@ -43,6 +49,7 @@ export const signUp = (data) => {
                     type: ACTION_LOG_IN,
                     payload: userData
                 });
+
                 window.location.replace(HOME_PAGE);
             },
             errorMessage => {
@@ -57,16 +64,8 @@ export const signUp = (data) => {
 };
 
 export const logOut = () => {
-    api.signOutUser().then(
-        () => {
-            localStorage.clear();
-            window.location.replace(LOG_IN);
-        },
-        errorMessage => {
-            console.log('logOut2: ', errorMessage.error);
-            window.location.replace(LOG_IN);
-        }
-    );
+    localStorage.clear();
+    window.location.replace(LOG_IN);
 
 };
 
@@ -104,7 +103,7 @@ export const updateCurrentUserInfo = (data) => {
                     type: ACTION_UPDATE_CURRENT_USER,
                     payload: userData
                 });
-                window.location.replace(HOME_PAGE);
+                history.push(HOME_PAGE);
             },
             errorMessage => {
                 console.log('updateCurrentUserInfo2: ', errorMessage.error);
@@ -122,7 +121,7 @@ export const changeCurrentUserPassword = (data) => {
     return dispatch => {
         api.updateCurrentUserPassword(data).then(
             () => {
-                window.location.replace(HOME_PAGE);
+                history.push(HOME_PAGE);
             },
             errorMessage => {
                 console.log('changeCurrentUserPassword2: ', errorMessage.error);
