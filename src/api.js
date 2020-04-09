@@ -1,11 +1,20 @@
 import {
+    ADD_USER_FIELD,
     API_URL,
+    DELETE,
+    DELETE_USER_FIELD,
     GET,
     GET_CURRENT_USER_INFO,
+    GET_USER_FIELDS,
+    GET_USER_FIELDS_ANAUTHORIZED,
+    GET_USER_RESPONSES,
     LOG_IN,
     LOG_OUT,
     LOG_UP,
     POST,
+    PUT,
+    SEND_ANSWER,
+    UPDATE_USER_FIELD,
     UPDATE_USER_INFO,
     UPDATE_USER_PASSWORD,
     USER,
@@ -36,8 +45,8 @@ const handleEmptyResponse = resp => {
         .catch(error => Promise.reject(error));
 };
 
-const signInUser = data =>
-    fetch(
+const signInUser = async data => {
+    let response = await fetch(
         `${API_URL + LOG_IN}`,
         {
             method: POST,
@@ -46,10 +55,13 @@ const signInUser = data =>
                 'Content-Type': 'application/json'
             }
         }
-    ).then(handleResponse);
+    );
+    return response.json();
+};
 
-const signUpUser = data =>
-    fetch(
+
+const signUpUser = async (data) => {
+    let response = await fetch(
         `${API_URL + LOG_UP}`,
         {
             method: POST,
@@ -58,10 +70,12 @@ const signUpUser = data =>
                 'Content-Type': 'application/json'
             }
         }
-    ).then(handleResponse);
+    );
+    return response.json();
+};
 
-const loadCurrentUserInfo = () =>
-    fetch(
+const loadCurrentUserInfo = async () => {
+    let response = await fetch(
         `${API_URL + GET_CURRENT_USER_INFO}`,
         {
             method: GET,
@@ -69,10 +83,13 @@ const loadCurrentUserInfo = () =>
                 'Authorization': `Bearer_${getToken()}`
             }
         }
-    ).then(handleResponse);
+    );
+    return response.json();
+};
 
-const signOutUser = () =>
-    fetch(
+
+const signOutUser = async () => {
+    let response = await fetch(
         `${API_URL + LOG_OUT}`,
         {
             method: GET,
@@ -80,10 +97,13 @@ const signOutUser = () =>
                 'Authorization': `Bearer_${getToken()}`
             }
         }
-    ).then(handleEmptyResponse);
+    );
+    return response.json();
+};
 
-const updateCurrentUserInfo = (data) =>
-    fetch(
+
+const updateCurrentUserInfo = async (data) => {
+    let response = await fetch(
         `${API_URL + UPDATE_USER_INFO + localStorage.getItem(USER_ID)}`,
         {
             method: POST,
@@ -93,10 +113,12 @@ const updateCurrentUserInfo = (data) =>
             },
             body: JSON.stringify(data)
         }
-    ).then(handleResponse);
+    );
+    return response.json();
+};
 
-const updateCurrentUserPassword = (data) =>
-    fetch(
+const updateCurrentUserPassword = async (data) => {
+    let response = await fetch(
         `${API_URL + UPDATE_USER_PASSWORD + localStorage.getItem(USER_ID)}`,
         {
             method: POST,
@@ -106,7 +128,105 @@ const updateCurrentUserPassword = (data) =>
             },
             body: JSON.stringify(data)
         }
-    ).then(handleEmptyResponse);
+    );
+    return response.json();
+};
+
+
+const loadUserFields = async () => {
+    let response = await fetch(
+        `${API_URL + GET_USER_FIELDS}`,
+        {
+            method: GET,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`
+            }
+        }
+    );
+    return response.json();
+};
+
+
+const addUserField = async (data) => {
+    let resp = await fetch(
+        `${API_URL + ADD_USER_FIELD}`,
+        {
+            method: PUT,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({...data, userId: localStorage.getItem(USER_ID)})
+        }
+    );
+    return await resp.json();
+};
+
+const updateUserField = async (data) => {
+    let resp = await fetch(
+        `${API_URL + UPDATE_USER_FIELD + data.id}`,
+        {
+            method: POST,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({...data, userId: localStorage.getItem(USER_ID)})
+        }
+    );
+    return await resp.json();
+};
+
+const deleteUserField = async (id) => {
+    let resp = await fetch(
+        `${API_URL + DELETE_USER_FIELD + id}`,
+        {
+            method: DELETE,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`,
+            }
+        }
+    );
+    return resp;
+};
+
+const loadUserFieldByUserId = async (userId) => {
+    let response = await fetch(
+        `${API_URL + GET_USER_FIELDS_ANAUTHORIZED + userId}`,
+        {
+            method: GET
+        }
+    );
+    return await response.json();
+};
+
+const sendAnswer = async (data) => {
+    let response = await fetch(
+        `${API_URL + SEND_ANSWER}`,
+        {
+            method: POST,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({answer: data})
+        }
+    );
+    return response;
+};
+
+const loadUserResponse = async () => {
+    let response = await fetch(
+        `${API_URL + GET_USER_RESPONSES}`,
+        {
+            method: GET,
+            headers: {
+                'Authorization': `Bearer_${getToken()}`
+            }
+        }
+    );
+    return response.json();
+}
 
 export const api = {
     signInUser,
@@ -115,5 +235,12 @@ export const api = {
     loadCurrentUserInfo,
     updateCurrentUserInfo,
     updateCurrentUserPassword,
+    loadUserFields,
+    addUserField,
+    updateUserField,
+    deleteUserField,
+    loadUserFieldByUserId,
+    sendAnswer,
+    loadUserResponse
 };
 

@@ -1,15 +1,25 @@
-.home-gen {
+.blank-gen {
     height: 100%;
     width: 100%;
     position: fixed;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     background-color: rgba(0, 0, 0, 0.05);
+    padding-top: 2%;
 
     border-top: solid;
     border-color: rgba(0, 0, 0, 0.1);
     border-width: 2px;
+}
 
-    text-align: center;
+.form-content {
+    padding: 20px 50px 40px;
+}
+
+.btn-blank {
+    margin-top: 20px;
+    width: 40%;
+    font-size: 20px;
+    font-weight: 500;
 }
